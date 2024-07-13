@@ -1,9 +1,7 @@
-Inside **~/** create **.vimrc**
+<h1>Highly recommend using Windows Terminal with Remote SSH</h1>
 
-Inside **~/.vim/colors** create **codedark.vim**
-  
-  Place ghdark.vim
+<h2>Windows Terminal setting</h2>
 
-Inside ~/.vim/syntax
-  
-  Place systemverilog.vim
+<h2>VIM setting</h2>
+
+<h2>Shortcuts</h2>
