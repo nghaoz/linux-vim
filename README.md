@@ -1,4 +1,4 @@
-<h1>Highly recommend using Windows Terminal with Remote SSH</h1>
+<h1>Recommend using Windows Terminal with Remote SSH</h1>
 
 <h2>Windows Terminal setting</h2>
 
