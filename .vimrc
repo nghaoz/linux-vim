@@ -43,16 +43,16 @@ let &t_EI = "\e[2 q"
 " wrap
 set nowrap
 
-" quick comment
-autocmd FileType c,cpp,java,scala             let b:comment_leader = '\/\/haoz'
-autocmd FileType sh,csh,ruby,python           let b:comment_leader = '#haoz'
-autocmd FileType conf,fstab                   let b:comment_leader = '#haoz'
-autocmd FileType tex                          let b:comment_leader = '%haoz'
-autocmd FileType mail                         let b:comment_leader = '>haoz'
-autocmd FileType vim                          let b:comment_leader = 'haoz'
-autocmd FileType nasm                         let b:comment_leader = ';haoz'
-autocmd BufReadPre,FileReadPre *.v,*.sv,*.svh let b:comment_leader = '\/\/haoz'
-autocmd BufReadPre,FileReadPre *.csh,*.txt    let b:comment_leader = '#haoz'
+" quick comment ->  shoutout to manhd
+autocmd FileType c,cpp,java,scala             let b:comment_leader = '\/\/'
+autocmd FileType sh,csh,ruby,python           let b:comment_leader = '#'
+autocmd FileType conf,fstab                   let b:comment_leader = '#'
+autocmd FileType tex                          let b:comment_leader = '%'
+autocmd FileType mail                         let b:comment_leader = '>'
+autocmd FileType vim                          let b:comment_leader = '"'
+autocmd FileType nasm                         let b:comment_leader = ';'
+autocmd BufReadPre,FileReadPre *.v,*.sv,*.svh let b:comment_leader = '\/\/'
+autocmd BufReadPre,FileReadPre *.csh,*.txt    let b:comment_leader = '#'
 
 function! CommentLine()
     execute ':silent! s/^\([ |\t]*\)\(.*\)/\1' . b:comment_leader . ' \2/g'
@@ -72,5 +72,28 @@ augroup autosave
     autocmd FileType * autocmd TextChanged,InsertLeave <buffer> if &readonly == 0 | silent write | endif
 augroup END
 
-" file syntax and quick comment -> shoutout to manhd
-autocmd BufNewFile,BufRead *.v,*.sv,*.svh,*.log set syntax=systemverilog
+" file syntax -> shoutout to manhd
+autocmd BufNewFile,BufRead *.v,*.sv,*.svh,*.log set ft=systemverilog
+
+" shortcuts
+noremap <C-n> :tabnew<cr>
+noremap <C-w> :q<cr>
+noremap <C-\> :vs<cr>
+noremap <C-o> :E<cr>
+noremap <C-RIGHT> :tabnext<cr>
+noremap <C-LEFT> :tabprevious<cr>
+
+" status line
+set laststatus=2
+set statusline+=\%F
+set statusline+=%#LineNr#
+set statusline+=%=
+set statusline+=%#CursorColumn#
+set statusline+=\%y
+set statusline+=\[%l/%L\ lines]
+function! FileSize(bytes)
+    let l:bytes = a:bytes | let l:sizes = ['B', 'KB', 'MB', 'GB'] | let l:i = 0
+        while l:bytes >= 1024 | let l:bytes = l:bytes / 1024.0 | let l:i += 1 | endwhile
+        return l:bytes > 0 ? printf(' %.1f%s ', l:bytes, l:sizes[l:i]) : ''
+endfunction
+set statusline+=\[%{FileSize(line2byte('$')+len(getline('$')))}\]
