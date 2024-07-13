@@ -97,3 +97,24 @@ function! FileSize(bytes)
         return l:bytes > 0 ? printf(' %.1f%s ', l:bytes, l:sizes[l:i]) : ''
 endfunction
 set statusline+=\[%{FileSize(line2byte('$')+len(getline('$')))}\]
+
+" auto insert/remove 1 tab (4 spaces)
+autocmd FileType * let b:tab_leader = '\t'
+
+function! TabLine()
+    execute ':silent! s/^\([|\t]*\)\(.*\)/\1' . b:tab_leader . '\2/g'
+endfunction
+
+function! UntabLine()
+    execute ':silent! s/^\([\|\t]*\)' . b:tab_leader . '/\1/g'
+endfunction
+
+noremap ] :call TabLine()<CR>
+noremap [ :call UntabLine()<CR>
+
+
+
+
+
+
+
