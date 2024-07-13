@@ -76,3 +76,5 @@
       - `Ctrl o` Open new file
       - `Ctrl Right` Next tab
       - `Ctrl Left` Previous tab
+      - `]` Insert 1 tab
+      - `[` Remove 1 tab
