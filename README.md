@@ -1,7 +1,9 @@
-Inside ~/
-  Place .vimrc
-Inside ~/.vim/colors
-  Place codedark.vim
+Inside **~/** create **.vimrc**
+
+Inside **~/.vim/colors** create **codedark.vim**
+  
   Place ghdark.vim
+
 Inside ~/.vim/syntax
+  
   Place systemverilog.vim
