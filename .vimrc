@@ -99,7 +99,7 @@ endfunction
 set statusline+=\[%{FileSize(line2byte('$')+len(getline('$')))}\]
 
 " auto insert/remove 1 tab (4 spaces)
-autocmd FileType * let b:tab_leader = '\t'
+autocmd FileType * let b:tab_leader = '    '
 
 function! TabLine()
     execute ':silent! s/^\([|\t]*\)\(.*\)/\1' . b:tab_leader . '\2/g'
