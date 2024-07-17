@@ -49,3 +49,8 @@
       - `Ctrl Left` Previous tab
       - `]` Insert 1 tab
       - `[` Remove 1 tab
+
+<h2>Other Plugin</h2>
+https://github.com/preservim/nerdtree
+https://github.com/vim-scripts/AutoComplPop
+
