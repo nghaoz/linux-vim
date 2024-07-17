@@ -126,7 +126,6 @@ noremap <C-b> :NERDTreeToggle<cr>
 
 " Re-Config the Tab color
 :hi TabLine ctermfg=159 ctermbg=0
-:hi TabLineSel ctermfg=159 ctermbg=8
 
 
 
