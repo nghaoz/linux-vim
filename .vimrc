@@ -119,13 +119,10 @@ let NERDTreeShowHidden=1
 " Exit Vim if NERDTree is the only window remaining in the only tab.
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | call feedkeys(":quit\<CR>:\<BS>") | endif
 
-" Open the existing NERDTree on each new tab.
-" autocmd BufWinEnter * if &buftype != 'quickfix' && getcmdwintype() == '' | silent NERDTreeMirror | endif
-
 noremap <C-b> :NERDTreeToggle<cr>
 
 " Re-Config the Tab color
-:hi TabLine ctermfg=159 ctermbg=0
+:hi TabLineSel ctermfg=159 ctermbg=0
 
 
 
