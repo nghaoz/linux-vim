@@ -132,6 +132,8 @@ augroup filtype_verilog
     autocmd BufNewFile,BufRead *.v,*.sv,*.svh,*.log let b:match_words='\<function\>:\<endfunction\>,\<task\>:\<endtask\>,\<begin\>:\<end\>,\<`protect\>:\<endprotect\>,\<generate\>:\<endg$
 augroup END
 " use Shift-5 to find
+" use za to fold/unfold current level
+
 
 
 
