@@ -133,6 +133,7 @@ augroup filtype_verilog
 augroup END
 " use Shift-5 to find
 " use za to fold/unfold current level
+" use z-shift-a to fold/unfold all from current level
 
 
 
