@@ -56,3 +56,4 @@ https://github.com/preservim/nerdtree
 
 https://github.com/vim-scripts/AutoComplPop
 
+https://github.com/adelarsq/vim-matchit
