@@ -129,14 +129,14 @@ augroup filtype_verilog
     autocmd!
     autocmd FileType Verilog,systemverilog setlocal foldmethod=indent
     autocmd BufNewFile,BufRead *.v,*.sv,*.svh setlocal foldmethod=indent
-    autocmd BufNewFile,BufRead *.v,*.sv,*.svh let b:match_words='\<function\>:\<endfunction\>,\<task\>:\<endtask\>,\<begin\>:\<end\>,\<`protect\>:\<endprotect\>,\<generate\>:\<endg$
+    " autocmd BufNewFile,BufRead *.v,*.sv,*.svh let b:match_words='\<function\>:\<endfunction\>,\<task\>:\<endtask\>,\<begin\>:\<end\>,\<`protect\>:\<endprotect\>,\<generate\>:\<endg$
 augroup END
 " use Shift-5 to find
 " use za to fold/unfold current level
 " use z-shift-a to fold/unfold all from current level
 
-
-
-
-
-
+" display indent -> current indent plugin get conficted with line 132
+let g:indentguides_spacechar = '┆'
+let g:indentguides_tabchar = '|'
+let g:indentguides_firstlevel = 1
+set listchars=
