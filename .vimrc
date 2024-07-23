@@ -1,3 +1,6 @@
+set enconding=utf-8
+set ic
+
 " set auto read when a file is changed from outside
 set autoread
 set autoread | au CursorHold * checktime | call feedkeys("lh")
