@@ -1,4 +1,5 @@
 set enconding=utf-8
+set guifont=Monospace\ Regular\ 9
 set ic
 
 " set auto read when a file is changed from outside
