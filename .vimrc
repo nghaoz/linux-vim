@@ -130,9 +130,9 @@ noremap <C-b> :NERDTreeToggle<cr>
 
 " Fold method and Find config
 augroup filtype_verilog
-    autocmd!
-    autocmd FileType Verilog,systemverilog setlocal foldmethod=indent
-    autocmd BufNewFile,BufRead *.v,*.sv,*.svh setlocal foldmethod=indent
+    " autocmd!
+    " autocmd FileType Verilog,systemverilog setlocal foldmethod=indent
+    " autocmd BufNewFile,BufRead *.v,*.sv,*.svh setlocal foldmethod=indent
     " autocmd BufNewFile,BufRead *.v,*.sv,*.svh let b:match_words='\<function\>:\<endfunction\>,\<task\>:\<endtask\>,\<begin\>:\<end\>,\<`protect\>:\<endprotect\>,\<generate\>:\<endg$
 augroup END
 " use Shift-5 to find
