@@ -1,4 +1,4 @@
-set enconding=utf-8
+set encoding=utf-8
 set guifont=Monospace\ Regular\ 9
 set ic
 
