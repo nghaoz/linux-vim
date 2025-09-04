@@ -142,3 +142,25 @@ augroup END
 " use Shift-5 to find
 " use za to fold/unfold current level
 " use z-shift-a to fold/unfold all from current level
+
+" Select with shift + arrows
+inoremap    <S-Left>              <Left><C-o>v
+inoremap    <S-Right>             <C-o>v
+inoremap    <S-Up>                <Left><C-o>v<Up><Right>
+inoremap    <S-Down>              <C-o>v<Down><Left>
+inoremap    <S-Home>              <C-o>v<Home>
+inoremap    <S-End>               <C-o>v<End>
+imap        <C-S-Left>            <S-Left><C-Left>
+imap        <C-S-Right>           <S-Right><C-Right>
+vnoremap    <S-Left>              <Left>
+vnoremap    <S-Right>             <Right>
+vnoremap    <S-Up>                <Up>
+vnoremap    <S-Down>              <Down>
+vnoremap    <S-Home>              <Home>
+vnoremap    <S-End>               <End>
+
+" Auto unselect when not holding shift
+vmap        <Left>                <Esc>
+vmap        <Right>               <Esc><Right>
+vmap        <Up>                  <Esc><Up>
+vmap        <Down>                <Esc><Down>
