@@ -167,3 +167,6 @@ vmap        <Down>                <Esc><Down>
 
 " Select current word with Ctrl D
 nnoremap <C-d> :let @/='\<'.expand('<cword>').'\>'<CR>viw
+
+" Find current selection with Ctrl F
+vnoremap <C-S-f> y:let @/ = escape(@", '\\/.*$^~[]')<CR>N
