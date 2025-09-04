@@ -164,3 +164,6 @@ vmap        <Left>                <Esc>
 vmap        <Right>               <Esc><Right>
 vmap        <Up>                  <Esc><Up>
 vmap        <Down>                <Esc><Down>
+
+" Select current word with Ctrl D
+nnoremap <C-d> :let @/='\<'.expand('<cword>').'\>'<CR>viw
