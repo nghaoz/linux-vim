@@ -170,3 +170,6 @@ nnoremap <C-d> :let @/='\<'.expand('<cword>').'\>'<CR>viw
 
 " Find current selection with Ctrl F
 vnoremap <C-S-f> y:let @/ = escape(@", '\\/.*$^~[]')<CR>N
+
+" Foled lines color
+highlight Folded ctermfg=White ctermbg=DarkBlue guifg=#ffffff guibg=#003366
