@@ -181,3 +181,6 @@ endif
 
 " turn off auto comment
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+" reload button -> should use when reading file only
+nnoremap <F5> :edit!<CR>
