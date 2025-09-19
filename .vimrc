@@ -86,7 +86,7 @@ autocmd BufNewFile,BufRead *.v,*.sv,*.svh,*.log set ft=systemverilog
 " shortcuts
 noremap <C-n> :tabnew<cr>
 noremap <C-w> :q<cr>
-noremap <C-\> :vs<cr>
+noremap <C-\> :vs<cr><C-w>w
 noremap <C-o> :E<cr>
 noremap <C-RIGHT> :tabnext<cr>
 noremap <C-LEFT> :tabprevious<cr>
