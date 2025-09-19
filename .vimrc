@@ -174,6 +174,9 @@ vnoremap <C-S-f> y:let @/ = escape(@", '\\/.*$^~[]')<CR>N
 " Foled lines color
 highlight Folded ctermfg=White ctermbg=DarkBlue guifg=#ffffff guibg=#003366
 
+" split divider color
+highlight VertSplit ctermfg=White ctermbg=DarkBlue guifg=#ffffff guibg=#003366
+
 " reopen at last posistion
 if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
