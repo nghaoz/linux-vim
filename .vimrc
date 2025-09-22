@@ -106,20 +106,6 @@ function! FileSize(bytes)
 endfunction
 set statusline+=\[%{FileSize(line2byte('$')+len(getline('$')))}\]
 
-" auto insert/remove 1 tab (4 spaces)
-autocmd FileType * let b:tab_leader = '    '
-
-function! TabLine()
-    execute ':silent! s/^\([|\t]*\)\(.*\)/\1' . b:tab_leader . '\2/g'
-endfunction
-
-function! UntabLine()
-    execute ':silent! s/^\([\|\t]*\)' . b:tab_leader . '/\1/g'
-endfunction
-
-noremap ] :call TabLine()<CR>
-noremap [ :call UntabLine()<CR>
-
 " NERDtree setting
 " show hidden files
 let NERDTreeShowHidden=1
@@ -216,3 +202,21 @@ vnoremap <C-c> "+y
 
 " Map Shift+Delete to delete the current line in normal mode
 nnoremap <S-Del> dd
+
+" tab and untab
+autocmd FileType * let b:tab_leader = '    '
+
+function! TabLine()
+    execute 'silent! s/^\([|\t]*\)\(.*\)/\1' . b:tab_leader . '\2/g'
+endfunction
+
+function! UntabLine()
+    execute 'silent! s/^\([|\t]*\)' . b:tab_leader . '/\1/g'
+endfunction
+
+nnoremap <C-]> :call TabLine()<CR>
+nnoremap <C-[> :call UntabLine()<CR>
+xnoremap <C-]> :<C-U>call TabLine()<CR>
+xnoremap <C-[> :<C-U>call UntabLine()<CR>
+inoremap <C-]> <Esc>:call TabLine()<CR>gi
+inoremap <C-[> <Esc>:call UntabLine()<CR>gi
