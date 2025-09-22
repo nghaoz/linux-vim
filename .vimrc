@@ -213,3 +213,6 @@ nnoremap V <C-v>
 
 " In visual mode, Ctrl+C copies to system clipboard
 vnoremap <C-c> "+y
+
+" Map Shift+Delete to delete the current line in normal mode
+nnoremap <S-Del> dd
