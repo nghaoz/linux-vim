@@ -158,6 +158,12 @@ vnoremap    <S-Up>                <Up>
 vnoremap    <S-Down>              <Down>
 vnoremap    <S-Home>              <Home>
 vnoremap    <S-End>               <End>
+nnoremap     <S-Left>             v<Left>
+nnoremap     <S-Right>            v<Right>
+nnoremap     <S-Up>               v<Up>
+nnoremap     <S-Down>             v<Down>
+nnoremap     <S-Home>             v<Home>
+nnoremap     <S-End>              v<End>
 
 " Auto unselect when not holding shift
 vmap        <Left>                <Esc>
@@ -187,3 +193,9 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " reload button -> should use when reading file only
 nnoremap <F5> :edit!<CR>
+
+" bind arrow key in normal mode
+xnoremap <Left>  <Left>
+xnoremap <Right> <Right>
+xnoremap <Up>    <Up>
+xnoremap <Down>  <Down>
