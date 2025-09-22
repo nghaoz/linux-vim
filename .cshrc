@@ -12,4 +12,6 @@ alias cwdcmd ' \
   endif'
 cwdcmd
 
+alias gf "grep -rn"
+
 alias gvim 'gvim \!* &'
