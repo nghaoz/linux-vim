@@ -11,3 +11,5 @@ alias cwdcmd ' \
     set prompt = "%{\e]2;%~\a%}[%m:%n][$ip][%{\033[1;36m%}$path_without_last/%{\033[0m%}%{\033[1;32m%}$last_dir%{\033[0m%}]%#%s "; \
   endif'
 cwdcmd
+
+alias gvim 'gvim \!* &'
