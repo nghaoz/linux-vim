@@ -199,3 +199,17 @@ xnoremap <Left>  <Left>
 xnoremap <Right> <Right>
 xnoremap <Up>    <Up>
 xnoremap <Down>  <Down>
+
+" select line
+nnoremap <C-l> V
+inoremap <C-l> <Esc>V
+
+" Paste from clipboard using Ctrl+V
+nnoremap <C-v> "+p
+inoremap <C-v> <C-r>+
+
+" Map 'V' (Shift+v) to visual block mode (normally <C-v>)
+nnoremap V <C-v>
+
+" In visual mode, Ctrl+C copies to system clipboard
+vnoremap <C-c> "+y
