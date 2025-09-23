@@ -216,3 +216,7 @@ endfunction
 
 noremap ] :call TabLine()<CR>
 noremap [ :call UntabLine()<CR>
+
+" slider 
+set guioptions-=r
+set guioptions-=b
