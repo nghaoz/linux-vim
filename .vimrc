@@ -220,3 +220,9 @@ noremap [ :call UntabLine()<CR>
 " slider 
 set guioptions+=r
 set guioptions+=b
+
+" Map Ctrl+X in visual mode to cut to clipboard
+vnoremap <C-x> "+d
+
+" (Optional) Map Ctrl+X in normal mode to delete the current line and copy to clipboard
+nnoremap <C-x> "+dd
