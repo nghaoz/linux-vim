@@ -226,3 +226,7 @@ vnoremap <C-x> "+d
 
 " (Optional) Map Ctrl+X in normal mode to delete the current line and copy to clipboard
 nnoremap <C-x> "+dd
+
+" little thing bind for insert mode
+nnoremap a <Nop>
+nnoremap i a
