@@ -230,3 +230,6 @@ nnoremap <C-x> "+dd
 " little thing bind for insert mode
 nnoremap a <Nop>
 nnoremap i a
+
+" paste in gvim command line
+cnoremap <C-v> <C-r>+
