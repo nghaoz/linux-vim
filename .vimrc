@@ -229,6 +229,11 @@ nnoremap <C-x> "+dd
 
 " little thing bind for insert mode
 nnoremap i a
+nnoremap a <Nop>
 
 " paste in gvim command line
 cnoremap <C-v> <C-r>+
+
+" bind for press home
+inoremap <Home> <C-o>^
+nnoremap <Home> ^
