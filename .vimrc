@@ -237,3 +237,6 @@ cnoremap <C-v> <C-r>+
 " bind for press home
 inoremap <Home> <C-o>^
 nnoremap <Home> ^
+
+" Toggle line wrap with Alt+z in gVim
+nnoremap <M-z> :set wrap!<CR>
