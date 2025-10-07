@@ -240,3 +240,12 @@ nnoremap <Home> ^
 
 " Toggle line wrap with Alt+z in gVim
 nnoremap <M-z> :set wrap!<CR>
+
+" Replace selection in visual mode with clipboard content
+vnoremap <C-V> "+p
+
+" Paste clipboard content in normal mode at cursor position
+nnoremap <C-V> "+gP
+
+" Paste in insert mode at cursor position
+inoremap <C-V> <C-R>+
