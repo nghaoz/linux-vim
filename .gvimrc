@@ -92,19 +92,19 @@ noremap <C-RIGHT> :tabnext<cr>
 noremap <C-LEFT> :tabprevious<cr>
 
 " status line
-set laststatus=2
-set statusline+=\%F
-set statusline+=%#LineNr#
-set statusline+=%=
-set statusline+=%#CursorColumn#
-set statusline+=\%y
-set statusline+=\[%l/%L\ lines]
-function! FileSize(bytes)
-    let l:bytes = a:bytes | let l:sizes = ['B', 'KB', 'MB', 'GB'] | let l:i = 0
-        while l:bytes >= 1024 | let l:bytes = l:bytes / 1024.0 | let l:i += 1 | endwhile
-        return l:bytes > 0 ? printf(' %.1f%s ', l:bytes, l:sizes[l:i]) : ''
-endfunction
-set statusline+=\[%{FileSize(line2byte('$')+len(getline('$')))}\]
+" set laststatus=2
+" set statusline+=\%F
+" set statusline+=%#LineNr#
+" set statusline+=%=
+" set statusline+=%#CursorColumn#
+" set statusline+=\%y
+" set statusline+=\[%l/%L\ lines]
+" function! FileSize(bytes)
+"    let l:bytes = a:bytes | let l:sizes = ['B', 'KB', 'MB', 'GB'] | let l:i = 0
+"        while l:bytes >= 1024 | let l:bytes = l:bytes / 1024.0 | let l:i += 1 | endwhile
+"        return l:bytes > 0 ? printf(' %.1f%s ', l:bytes, l:sizes[l:i]) : ''
+" endfunction
+" set statusline+=\[%{FileSize(line2byte('$')+len(getline('$')))}\]
 
 " NERDtree setting
 " show hidden files
