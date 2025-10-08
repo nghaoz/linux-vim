@@ -2,7 +2,7 @@
 set hlsearch
 
 set encoding=utf-8
-set guifont=Monospace\ Regular\ 9
+set guifont=Monospace\ Regular\ 10
 set ic
 
 " set auto read when a file is changed from outside
@@ -249,3 +249,6 @@ nnoremap <C-V> "+gP
 
 " Paste in insert mode at cursor position
 inoremap <C-V> <C-R>+
+
+" Select all
+nnoremap <C-a> ggVG
