@@ -252,3 +252,6 @@ inoremap <C-V> <C-R>+
 
 " Select all
 nnoremap <C-a> ggVG
+
+" unbind x
+nnoremap x <Nop>
