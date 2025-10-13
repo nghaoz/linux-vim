@@ -16,4 +16,3 @@ alias gf "grep -rn"
 
 alias gvim 'gvim \!* &'
 
-alias gv 'if ( `gvim --serverlist` == "" ) gvim "\!*" &;  if ( `gvim --serverlist` != "" ) gvim --remote-send ":tabnew \!*<CR>"'
