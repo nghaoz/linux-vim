@@ -8,7 +8,7 @@ alias cwdcmd ' \
     set path_without_last = dirname "$cwd"; \
     set last_dir = basename "$cwd"; \
     if ( "$path_without_last" == "$HOME" ) set path_without_last = "~"; \
-    set prompt = "%{\e]2;%~\a%}[%m:%n][$ip][%{\033[1;36m%}$path_without_last/%{\033[0m%}%{\033[1;32m%}$last_dir%{\033[0m%}]%s \n%{\033[1;36m%}Haoz %#%{\033[0m%}%s "; \
+    set prompt = "[%T]%{\e]2;%~\a%}[%m:%n][$ip][%{\033[1;36m%}$path_without_last/%{\033[0m%}%{\033[1;32m%}$last_dir%{\033[0m%}]%s \n%{\033[1;36m%}Haoz %#%{\033[0m%}%s "; \
   endif'
 cwdcmd
 
