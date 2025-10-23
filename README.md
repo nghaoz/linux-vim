@@ -153,50 +153,6 @@ endfunction
 
 Call functions BookmarkSave, BookmarkLoad and BookmarkClearAll with the last argument set to 0 to perform these operations silently. You may use this to manage your bookmark list transparently from within your custom script.
 
-## Unite Integration
-![A screenshot of vim-bookmarks' Unite interface](./screenshot-unite-interface.png)
-
-[Unite](https://github.com/Shougo/unite.vim) is a multi-purpose user-interface plugin platform. Vim-bookmarks provides a Unite source called `vim_bookmarks` so users who use Unite will handle bookmarks with the Unite interface.
-
-Additionally, when showing all your bookmarks, Unite is detected and the plugin will open `:Unite vim_bookmarks` instead of Vim's quickfix window. Note that `g:bookmark_auto_close` is no longer applied. Once opened, the window is managed by Unite.
-
-To set a global per-source context setting, that will apply to Unite's vim_bookmarks source everytime it's opened, you can add this to your `vimrc`:
-
-```viml
-call unite#custom#profile('source/vim_bookmarks', 'context', {
-	\   'winheight': 13,
-	\   'direction': 'botright',
-	\   'start_insert': 0,
-	\   'keep_focus': 1,
-	\   'no_quit': 1,
-	\ })
-```
-
-With the Unite interface, when you select bookmarks, you can perform the following actions:
-
-* Open the selected bookmarks in various ways (open to the right, open above, open in new tab, etc.)
-* Yank the informations of selected bookmarks (path and line number, the line content, annotation, etc.)
-* Highlight the lines of the selected bookmarks
-* Replace the contents of selected bookmarks with [vim-qfreplace](https://github.com/thinca/vim-qfreplace) interface
-* Delete the selected bookmarks
-* And more...
-
-See the screenshot below to get an idea of what you can do with the interface (the picture shows only a fraction, that means you can select even more actions):
-
-![A screenshot of action list of vim-bookmarks' Unite interface](./screenshot-unite-interface-actions.png)
-
-For more information about Unite, start reading `:help Unite`.
-
-## CtrlP Integration
-
-[ctrlp.vim](https://github.com/ctrlpvim/ctrlp.vim) is a Full path fuzzy file, buffer, mru, tag, ... finder for Vim.
-
-Additionally, when showing all your bookmarks, CtrlP is detected and the plugin will open `:CtrlPBookmark` instead of Vim's quickfix window. Note that `g:bookmark_auto_close` is no longer applied. Once opened, the window is managed by CtrlP.
-
-With the CtrlP interface, when you select bookmarks, you can perform the following actions:
-* Open the selected bookmarks in various ways (open to the right, open above, open in new tab, etc.)
-* And more...
-
 ## FAQ
 
 > Why are the colours in the sign column weird?
@@ -246,26 +202,3 @@ autocmd BufEnter NERD_tree_* :call BookmarkUnmapKeys()
 > Why do my bookmarks disappear when running the `:make` command?
 
 By default, the bookmark list is shown using the quickfix window, which can sometimes conflict with other commands. The location list may be used to show the bookmark list instead by setting the `g:bookmark_location_list` option documented above.
-
-## Changelog
-
-See the [release page](https://github.com/MattesGroeger/vim-bookmarks/releases) for all changes.
-
-## Credits & Contribution
-
-This plugin was developed by [Mattes Groeger][blog] under the [MIT License][license]. Pull requests are very welcome.
-
-The following plugins were a great inspiration to me:
-* [vmark.vim][vmark] by Michael Zhou
-* [vim-gitgutter][gitgutter] by Andrew Stewart
-
-
-  [pathogen]: https://github.com/tpope/vim-pathogen
-  [vundle]: https://github.com/gmarik/vundle
-  [neobundle]: https://github.com/Shougo/neobundle.vim
-  [vimplug]: https://github.com/MattesGroeger/vim-plug
-  [macvim]: http://code.google.com/p/macvim/
-  [license]: https://github.com/MattesGroeger/vim-bookmarks/blob/master/LICENSE
-  [blog]: http://blog.mattes-groeger.de
-  [vmark]: http://www.vim.org/scripts/script.php?script_id=4076
-  [gitgutter]: https://github.com/airblade/vim-gitgutter
