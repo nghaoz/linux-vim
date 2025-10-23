@@ -1,4 +1,4 @@
-# VIM BOOKMARK
+# VIM BOOKMARK plugin
 
 ## Usage
 
