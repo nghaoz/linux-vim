@@ -1,4 +1,6 @@
-## VIM BOOKMARK Usage
+# VIM BOOKMARK
+
+## Usage
 
 After installation you can directly start using it. You can do this by either using the default shortcuts or the commands:
 
