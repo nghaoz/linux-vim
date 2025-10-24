@@ -2,7 +2,7 @@
 set hlsearch
 
 set encoding=utf-8
-set guifont=Monospace\ Regular\ 10
+set guifont=Monospace\ Regular\ 11
 set ic
 
 " set auto read when a file is changed from outside
