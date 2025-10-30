@@ -272,5 +272,8 @@ highlight Search ctermfg=blue ctermbg=grey guifg=#0000ff guibg=#888888
 " clear highlight
 nnoremap <S-l> :nohlsearch<CR>
 
-: highlight all word match current word
-nnoremap <S-h> :let @/ = '\<'.expand('<cword>').'\>'<CR>:set hlsearch<CR>
+" highlight all word match current word
+" For normal mode: highlight word under cursor with Shift-h
+nnoremap H :let @/ = '\<'.expand('<cword>').'\>'<CR>:set hlsearch<CR>
+" For visual mode: highlight selected text with Shift-h
+vnoremap H "zy:let @/ = escape(@z, '/\')<CR>:set hlsearch<CR>
