@@ -262,3 +262,12 @@ let g:bookmark_sign = '>>'
 
 " line color
 highlight CursorLineNr ctermfg=51 guifg=#00ffff
+
+" find word highlight color
+highlight Search ctermfg=blue ctermbg=grey guifg=#0000ff guibg=#888888
+
+" clear highlight
+nnoremap <C-l> :nohlsearch<CR>
+
+: highlight all word match current word
+nnoremap <C-h> :let @/ = '\<'.expand('<cword>').'\>'<CR>:set hlsearch<CR>
