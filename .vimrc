@@ -121,8 +121,8 @@ noremap <C-b> :NERDTreeToggle<cr>
 " Fold method and Find config
 augroup filtype_verilog
     " autocmd!
-    autocmd FileType Verilog,systemverilog setlocal foldmethod=indent
-    autocmd BufNewFile,BufRead *.v,*.sv,*.svh setlocal foldmethod=indent
+    " autocmd FileType Verilog,systemverilog setlocal foldmethod=indent
+    " autocmd BufNewFile,BufRead *.v,*.sv,*.svh setlocal foldmethod=indent
     " autocmd BufNewFile,BufRead *.v,*.sv,*.svh let b:match_words='\<function\>:\<endfunction\>,\<task\>:\<endtask\>,\<begin\>:\<end\>,\<`protect\>:\<endprotect\>,\<generate\>:\<endg$
 augroup END
 " use Shift-5 to find
@@ -162,6 +162,7 @@ nnoremap <C-d> :let @/='\<'.expand('<cword>').'\>'<CR>viw
 
 " Find current selection with Ctrl F
 vnoremap <C-S-f> y:let @/ = escape(@", '\\/.*$^~[]')<CR>N
+nnoremap <C-f> *N
 
 " Foled lines color
 highlight Folded ctermfg=White ctermbg=DarkBlue guifg=#ffffff guibg=#003366
