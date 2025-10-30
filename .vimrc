@@ -118,16 +118,13 @@ noremap <C-b> :NERDTreeToggle<cr>
 " Re-Config the Tab color
 :hi TabLineSel ctermfg=159 ctermbg=0
 
-" Fold method and Find config
-augroup filtype_verilog
-    " autocmd!
-    " autocmd FileType Verilog,systemverilog setlocal foldmethod=indent
-    " autocmd BufNewFile,BufRead *.v,*.sv,*.svh setlocal foldmethod=indent
-    " autocmd BufNewFile,BufRead *.v,*.sv,*.svh let b:match_words='\<function\>:\<endfunction\>,\<task\>:\<endtask\>,\<begin\>:\<end\>,\<`protect\>:\<endprotect\>,\<generate\>:\<endg$
-augroup END
-" use Shift-5 to find
+" Fold
 " use za to fold/unfold current level
 " use z-shift-a to fold/unfold all from current level
+" user zr to unfold all
+set foldmethod=indent
+set foldlevel=99 " Show all folds open by default
+nnoremap <z-r> zR
 
 " Select with shift + arrows
 inoremap    <S-Left>              <Left><C-o>v
