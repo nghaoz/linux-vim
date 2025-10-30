@@ -158,8 +158,10 @@ vmap        <Down>                <Esc><Down>
 nnoremap <C-d> :let @/='\<'.expand('<cword>').'\>'<CR>viw
 
 " Find current selection with Ctrl F
-vnoremap <C-S-f> y:let @/ = escape(@", '\\/.*$^~[]')<CR>N
-nnoremap <C-f> *N
+vnoremap <C-S-f> y:let @/ = escape(@", '\\/.*$^~[]')<CR>Nzz
+nnoremap <C-f> *Nzz
+nnoremap n nzz
+nnoremap N Nzz
 
 " Foled lines color
 highlight Folded ctermfg=White ctermbg=DarkBlue guifg=#ffffff guibg=#003366
@@ -258,3 +260,5 @@ nnoremap x <Nop>
 highlight BookmarkSign ctermfg=51 guifg=#00ffff
 let g:bookmark_sign = '>>'
 
+" line color
+highlight CursorLineNr ctermfg=51 guifg=#00ffff
