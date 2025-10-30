@@ -92,19 +92,19 @@ noremap <C-RIGHT> :tabnext<cr>
 noremap <C-LEFT> :tabprevious<cr>
 
 " status line
-" set laststatus=2
-" set statusline+=\%F
-" set statusline+=%#LineNr#
-" set statusline+=%=
-" set statusline+=%#CursorColumn#
-" set statusline+=\%y
-" set statusline+=\[%l/%L\ lines]
-" function! FileSize(bytes)
-"    let l:bytes = a:bytes | let l:sizes = ['B', 'KB', 'MB', 'GB'] | let l:i = 0
-"        while l:bytes >= 1024 | let l:bytes = l:bytes / 1024.0 | let l:i += 1 | endwhile
-"        return l:bytes > 0 ? printf(' %.1f%s ', l:bytes, l:sizes[l:i]) : ''
-" endfunction
-" set statusline+=\[%{FileSize(line2byte('$')+len(getline('$')))}\]
+set laststatus=2
+set statusline+=\%F
+set statusline+=%#LineNr#
+set statusline+=%=
+set statusline+=%#CursorColumn#
+set statusline+=\%y
+set statusline+=\[%l/%L\ lines]
+function! FileSize(bytes)
+    let l:bytes = a:bytes | let l:sizes = ['B', 'KB', 'MB', 'GB'] | let l:i = 0
+        while l:bytes >= 1024 | let l:bytes = l:bytes / 1024.0 | let l:i += 1 | endwhile
+        return l:bytes > 0 ? printf(' %.1f%s ', l:bytes, l:sizes[l:i]) : ''
+endfunction
+set statusline+=\[%{FileSize(line2byte('$')+len(getline('$')))}\]
 
 " NERDtree setting
 " show hidden files
@@ -118,13 +118,16 @@ noremap <C-b> :NERDTreeToggle<cr>
 " Re-Config the Tab color
 :hi TabLineSel ctermfg=159 ctermbg=0
 
-" Fold
+" Fold 
+augroup filtype_verilog
+    " autocmd!
+    autocmd FileType Verilog,systemverilog setlocal foldmethod=indent
+    autocmd BufNewFile,BufRead *.v,*.sv,*.svh setlocal foldmethod=indent
+    " autocmd BufNewFile,BufRead *.v,*.sv,*.svh let b:match_words='\<function\>:\<endfunction\>,\<task\>:\<endtask\>,\<begin\>:\<end\>,\<`protect\>:\<endprotect\>,\<generate\>:\<endg$
+augroup END
 " use za to fold/unfold current level
 " use z-shift-a to fold/unfold all from current level
-" user zr to unfold all
-set foldmethod=indent
-" set foldlevel=99 " Show all folds open by default
-nnoremap <z-r> zR
+" use z-shift-r to unfold all
 
 " Select with shift + arrows
 inoremap    <S-Left>              <Left><C-o>v
@@ -267,7 +270,7 @@ highlight CursorLineNr ctermfg=51 guifg=#00ffff
 highlight Search ctermfg=blue ctermbg=grey guifg=#0000ff guibg=#888888
 
 " clear highlight
-nnoremap <C-l> :nohlsearch<CR>
+nnoremap <S-l> :nohlsearch<CR>
 
 : highlight all word match current word
-nnoremap <C-h> :let @/ = '\<'.expand('<cword>').'\>'<CR>:set hlsearch<CR>
+nnoremap <S-h> :let @/ = '\<'.expand('<cword>').'\>'<CR>:set hlsearch<CR>
