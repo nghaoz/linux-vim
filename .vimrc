@@ -160,9 +160,7 @@ vmap        <Down>                <Esc><Down>
 " Select current word with Ctrl D
 nnoremap <C-d> :let @/='\<'.expand('<cword>').'\>'<CR>viw
 
-" Find current selection with Ctrl F
-vnoremap <C-S-f> y:let @/ = escape(@", '\\/.*$^~[]')<CR>Nzz
-nnoremap <C-f> *Nzz
+" Find current selection
 nnoremap n nzz
 nnoremap N Nzz
 
@@ -273,7 +271,7 @@ highlight Search ctermfg=blue ctermbg=grey guifg=#0000ff guibg=#888888
 nnoremap <S-l> :nohlsearch<CR>
 
 " highlight all word match current word
-" For normal mode: highlight word under cursor with Shift-h
-nnoremap H :let @/ = '\<'.expand('<cword>').'\>'<CR>:set hlsearch<CR>
-" For visual mode: highlight selected text with Shift-h
-vnoremap H "zy:let @/ = escape(@z, '/\')<CR>:set hlsearch<CR>
+" For normal mode: highlight word under cursor with Ctrl f
+nnoremap <C-f> :let @/ = '\<'.expand('<cword>').'\>'<CR>:set hlsearch<CR>
+" For visual mode: highlight selected text with Ctrl f
+vnoremap <C-f> "zy:let @/ = escape(@z, '/\')<CR>:set hlsearch<CR>
