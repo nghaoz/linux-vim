@@ -122,6 +122,14 @@ noremap <C-b> :NERDTreeToggle<cr>
 " use za to fold/unfold current level
 " use z-shift-a to fold/unfold all from current level
 " user zr to unfold all
+" auto fold
+" augroup filtype_verilog
+    " autocmd!
+    " autocmd FileType Verilog,systemverilog setlocal foldmethod=indent
+    " autocmd BufNewFile,BufRead *.v,*.sv,*.svh setlocal foldmethod=indent
+    " autocmd BufNewFile,BufRead *.v,*.sv,*.svh let b:match_words='\<function\>:\<endfunction\>,\<task\>:\<endtask\>,\<begin\>:\<end\>,\<`protect\>:\<endprotect\>,\<generate\>:\<endg$
+" augroup END
+" manual fold
 set foldmethod=indent
 set foldlevel=99 " Show all folds open by default
 nnoremap <z-r> zR
