@@ -261,7 +261,7 @@ nnoremap x <Nop>
 highlight BookmarkSign ctermfg=51 guifg=#00ffff
 let g:bookmark_sign = '>>'
 
-" line color
+" line number color
 highlight CursorLineNr ctermfg=51 guifg=#00ffff
 
 " find word highlight color
@@ -275,3 +275,6 @@ nnoremap <S-l> :nohlsearch<CR>
 nnoremap <C-f> :let @/ = '\<'.expand('<cword>').'\>'<CR>:set hlsearch<CR>
 " For visual mode: highlight selected text with Ctrl f
 vnoremap <C-f> "zy:let @/ = escape(@z, '/\')<CR>:set hlsearch<CR>
+
+" line color
+highlight CursorLine ctermbg=236 guibg=#333333
