@@ -104,6 +104,8 @@ function! FileSize(bytes)
         while l:bytes >= 1024 | let l:bytes = l:bytes / 1024.0 | let l:i += 1 | endwhile
         return l:bytes > 0 ? printf(' %.1f%s ', l:bytes, l:sizes[l:i]) : ''
 endfunction
+highlight StatusLine ctermfg=51 guifg=#00ffff
+highlight StatusLineNC ctermfg=8 ctermbg=17 guifg=#888888 guibg=#001933
 set statusline+=\[%{FileSize(line2byte('$')+len(getline('$')))}\]
 
 " NERDtree setting
