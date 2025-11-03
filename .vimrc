@@ -106,7 +106,7 @@ function! FileSize(bytes)
 endfunction
 highlight StatusLine ctermfg=51 guifg=#00ffff
 highlight StatusLineNC ctermfg=8 ctermbg=17 guifg=#888888 guibg=#001933
-set statusline+=\[%{FileSize(line2byte('$')+len(getline('$')))}\]
+" set statusline+=\[%{FileSize(line2byte('$')+len(getline('$')))}\]
 
 " NERDtree setting
 " show hidden files
