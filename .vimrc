@@ -261,7 +261,7 @@ nnoremap x <Nop>
 
 " vim bookmark
 highlight BookmarkSign ctermfg=51 guifg=#00ffff
-let g:bookmark_sign = '>>'
+let g:bookmark_sign = '--'
 
 " line number color
 highlight CursorLineNr ctermfg=51 guifg=#00ffff
