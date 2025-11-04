@@ -260,6 +260,8 @@ nnoremap <C-a> ggVG
 nnoremap x <Nop>
 
 " vim bookmark
+let g:bookmark_highlight_lines = 1
+highlight BookmarkLine ctermbg=17 guibg=#001933
 highlight BookmarkSign ctermfg=51 guifg=#00ffff
 let g:bookmark_sign = '=='
 
