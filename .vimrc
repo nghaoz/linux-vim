@@ -78,9 +78,6 @@ augroup autosave
     autocmd FileType * autocmd TextChanged,InsertLeave <buffer> if &readonly == 0 | silent write | endif
 augroup END
 
-" file syntax -> shoutout to manhd
-autocmd BufNewFile,BufRead *.v,*.sv,*.svh,*.log set ft=systemverilog
-
 " shortcuts
 noremap <C-n> :tabnew<cr>
 noremap <C-w> :q<cr>
