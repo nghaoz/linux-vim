@@ -23,16 +23,14 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 set autoindent
-set smartindent
 
 " theme
 syntax enable
 syntax on
 set background=dark
-" setting for vscode_dark_default
-" colorscheme codedark
-" setting for github_dark
-colorscheme ghdark
+let g:github_colors_block_diffmark = 0
+:help github_colors.txt
+let g:airline_theme = "github"
 
 " cursor
 set cursorcolumn
@@ -104,9 +102,6 @@ function! FileSize(bytes)
         while l:bytes >= 1024 | let l:bytes = l:bytes / 1024.0 | let l:i += 1 | endwhile
         return l:bytes > 0 ? printf(' %.1f%s ', l:bytes, l:sizes[l:i]) : ''
 endfunction
-highlight StatusLine ctermfg=51 guifg=#00ffff
-highlight StatusLineNC ctermfg=8 ctermbg=17 guifg=#888888 guibg=#001933
-" set statusline+=\[%{FileSize(line2byte('$')+len(getline('$')))}\]
 
 " NERDtree setting
 " show hidden files
@@ -127,6 +122,7 @@ augroup filtype_verilog
     autocmd BufNewFile,BufRead *.v,*.sv,*.svh setlocal foldmethod=indent
     " autocmd BufNewFile,BufRead *.v,*.sv,*.svh let b:match_words='\<function\>:\<endfunction\>,\<task\>:\<endtask\>,\<begin\>:\<end\>,\<`protect\>:\<endprotect\>,\<generate\>:\<endg$
 augroup END
+runtime macros/matchit.vim
 set foldlevel=99
 " use za to fold/unfold current level
 " use z-shift-a to fold/unfold all from current level
@@ -267,10 +263,7 @@ highlight BookmarkSign ctermfg=51 guifg=#00ffff
 let g:bookmark_sign = '=='
 
 " line number color
-highlight CursorLineNr ctermfg=51 guifg=#00ffff
-
-" find word highlight color
-highlight Search ctermfg=blue ctermbg=grey guifg=#0000ff guibg=#888888
+highlight CursorLineNr ctermfg=white guifg=#ffffff guibg=#2d343a ctermbg=#2d343a
 
 " clear highlight
 nnoremap <S-l> :nohlsearch<CR>
