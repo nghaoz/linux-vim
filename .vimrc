@@ -127,6 +127,7 @@ augroup filtype_verilog
     autocmd BufNewFile,BufRead *.v,*.sv,*.svh setlocal foldmethod=indent
     " autocmd BufNewFile,BufRead *.v,*.sv,*.svh let b:match_words='\<function\>:\<endfunction\>,\<task\>:\<endtask\>,\<begin\>:\<end\>,\<`protect\>:\<endprotect\>,\<generate\>:\<endg$
 augroup END
+set foldlevel=99
 " use za to fold/unfold current level
 " use z-shift-a to fold/unfold all from current level
 " use z-shift-r to unfold all
