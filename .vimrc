@@ -258,6 +258,7 @@ let g:bookmark_highlight_lines = 1
 highlight BookmarkLine ctermbg=17 guibg=#001933
 highlight BookmarkSign ctermbg=17 guibg=#001933
 let g:bookmark_sign = '=='
+let g:bookmark_center = 1
 
 " line number color
 highlight CursorLineNr ctermfg=white guifg=#ffffff guibg=#2d343a ctermbg=#2d343a
