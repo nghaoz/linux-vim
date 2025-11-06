@@ -29,7 +29,6 @@ syntax enable
 syntax on
 set background=dark
 " let g:github_colors_block_diffmark = 0
-" :help github_colors.txt
 " colorscheme github
 " let g:airline_theme = "github"
 colorscheme ghdark
