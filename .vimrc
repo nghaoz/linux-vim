@@ -100,6 +100,8 @@ function! FileSize(bytes)
         while l:bytes >= 1024 | let l:bytes = l:bytes / 1024.0 | let l:i += 1 | endwhile
         return l:bytes > 0 ? printf(' %.1f%s ', l:bytes, l:sizes[l:i]) : ''
 endfunction
+highlight StatusLine ctermfg=51 guifg=#00ffff
+highlight StatusLineNC ctermfg=8 ctermbg=17 guifg=#888888 guibg=#001933
 
 " NERDtree setting
 " show hidden files
@@ -257,12 +259,12 @@ nnoremap x <Nop>
 " vim bookmark
 let g:bookmark_highlight_lines = 1
 highlight BookmarkLine ctermbg=17 guibg=#001933
-highlight BookmarkSign ctermbg=17 guibg=#001933
+highlight BookmarkSign ctermbg=17 guibg=#001933 guifg=#00ffff
 let g:bookmark_sign = '=='
 let g:bookmark_center = 1
 
 " line number color
-highlight CursorLineNr ctermfg=white guifg=#ffffff guibg=#2d343a ctermbg=#2d343a
+highlight CursorLineNr guifg=#00ffff
 
 " clear highlight
 nnoremap <S-l> :nohlsearch<CR>
