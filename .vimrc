@@ -275,3 +275,6 @@ vnoremap <C-f> "zy:let @/ = escape(@z, '/\')<CR>:set hlsearch<CR>
 
 " line color
 highlight CursorLine ctermbg=236 guibg=#333333
+
+" find word highlight color
+highlight Search ctermfg=blue ctermbg=grey guifg=#0000ff guibg=#888888
