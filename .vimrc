@@ -28,9 +28,11 @@ set autoindent
 syntax enable
 syntax on
 set background=dark
-let g:github_colors_block_diffmark = 0
-:help github_colors.txt
-let g:airline_theme = "github"
+" let g:github_colors_block_diffmark = 0
+" :help github_colors.txt
+" colorscheme github
+" let g:airline_theme = "github"
+colorscheme ghdark
 
 " cursor
 set cursorcolumn
