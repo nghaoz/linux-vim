@@ -280,20 +280,3 @@ highlight CursorLine ctermbg=236 guibg=#333333
 
 " find word highlight color
 highlight Search ctermfg=blue ctermbg=grey guifg=#0000ff guibg=#888888
-
-" toggle fold by indent for syntax using F3
-let g:fold_toggle_state = 0
-
-function! ToggleFoldMethod()
-  if g:fold_toggle_state == 0
-    set foldmethod=indent
-    let g:fold_toggle_state = 1
-    echo "Fold method: indent"
-  else
-    set foldmethod=syntax
-    let g:fold_toggle_state = 0
-    echo "Fold method: syntax"
-  endif
-endfunction
-
-nnoremap <F3> :call ToggleFoldMethod()<CR>
