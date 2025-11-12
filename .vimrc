@@ -123,7 +123,7 @@ augroup filtype_verilog
     " autocmd BufNewFile,BufRead *.v,*.sv,*.svh let b:match_words='\<function\>:\<endfunction\>,\<task\>:\<endtask\>,\<begin\>:\<end\>,\<`protect\>:\<endprotect\>,\<generate\>:\<endg$
 augroup END
 runtime macros/matchit.vim
-set foldlevel=99
+" set foldlevel=99
 " use za to fold/unfold current level
 " use z-shift-a to fold/unfold all from current level
 " use z-shift-r to unfold all
