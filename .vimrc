@@ -204,7 +204,7 @@ vnoremap <C-c> "+y
 nnoremap <S-Del> dd
 
 " auto insert/remove 1 tab (4 spaces)
-autocmd FileType * let b:tab_leader = '    '
+autocmd FileType * let b:tab_leader = "\t"
 
 function! TabLine()
     execute ':silent! s/^\([|\t]*\)\(.*\)/\1' . b:tab_leader . '\2/g'
