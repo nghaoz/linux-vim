@@ -19,18 +19,6 @@ set mouse=a
 set showtabline=2
 
 " tab
-function! DetectTab()
-    " Prefer 4, then 3, then 2 spaces for shiftwidth/tabstop
-    if search('^\s\{4\}\S', 'nw')
-        setlocal shiftwidth=4 tabstop=4 expandtab
-    elseif search('^\s\{3\}\S', 'nw')
-        setlocal shiftwidth=3 tabstop=3 expandtab
-    elseif search('^\s\{2\}\S', 'nw')
-        setlocal shiftwidth=2 tabstop=2 expandtab
-    endif
-endfunction
-autocmd BufReadPost * call DetectTab()
-
 " set tabstop=4
 " set shiftwidth=4
 " set expandtab
