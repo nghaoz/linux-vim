@@ -176,6 +176,7 @@ vmap        <Down>                <Esc><Down>
 
 " Select current word with Ctrl D
 nnoremap <C-d> :let @/='\<'.expand('<cword>').'\>'<CR>viw
+inoremap <C-d> <Esc>viw
 
 " Find current selection
 nnoremap n nzz
