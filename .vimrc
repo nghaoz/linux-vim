@@ -50,7 +50,7 @@ let &t_EI = "\e[2 q"
 " wrap
 set nowrap
 
-" quick comment ->  shoutout to manhd
+" quick comment
 autocmd FileType c,cpp,java,scala             let b:comment_leader = '\/\/'
 autocmd FileType sh,csh,ruby,python           let b:comment_leader = '#'
 autocmd FileType conf,fstab                   let b:comment_leader = '#'
@@ -61,16 +61,36 @@ autocmd FileType nasm                         let b:comment_leader = ';'
 autocmd BufReadPre,FileReadPre *.v,*.sv,*.svh let b:comment_leader = '\/\/'
 autocmd BufReadPre,FileReadPre *.csh,*.txt    let b:comment_leader = '#'
 
-function! CommentLine()
-    execute ':silent! s/^\([ |\t]*\)\(.*\)/\1' . b:comment_leader . ' \2/g'
+function! CommentRange(start, end)
+    for lnum in range(a:start, a:end)
+        let line = getline(lnum)
+        if line =~ '\S'
+            call setline(lnum, substitute(line, '^\(\s*\)\(.*\)', '\1' . b:comment_leader . ' \2', ''))
+        endif
+    endfor
 endfunction
+
+vnoremap cc :<C-u>call CommentRange(line("'<"), line("'>"))<CR>
 
 function! UncommentLine()
-    execute ':silent! s/^\([ \|\t]*\)' . b:comment_leader . ' /\1/g'
+    if getline('.') =~? '^\s*' . b:comment_leader
+        execute 'silent! s/^\(\s*\)' . b:comment_leader . ' \s\?/\1/'
+    endif
 endfunction
 
-noremap cc :call CommentLine()<CR>
-noremap bb :call UncommentLine()<CR>
+function! UncommentRange(start, end)
+    for lnum in range(a:start, a:end)
+        let line = getline(lnum)
+        if line =~? '^\s*' . b:comment_leader
+            call setline(lnum, substitute(line, '^\(\s*\)' . b:comment_leader . ' \?', '\1', ''))
+        endif
+    endfor
+endfunction
+
+vnoremap bb :<C-u>call UncommentRange(line("'<"), line("'>"))<CR>
+
+nnoremap cc :call CommentLine()<CR>
+nnoremap bb :call UncommentLine()<CR>
 
 " auto save file
 augroup autosave
