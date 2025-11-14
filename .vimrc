@@ -399,5 +399,5 @@
 
 " Setting cursor for gvim
     if has('gui_running')
-        set guicursor+=i:ver25-blinkon500-blinkoff500
+        set guicursor=n-v-c:ver25-blinkon0,i:ver25-blinkon500-blinkoff500,r:hor20-blinkon500-blinkoff500
     endif
