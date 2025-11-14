@@ -223,18 +223,24 @@ vnoremap <C-c> "+y
 nnoremap <S-Del> dd
 
 " auto insert/remove 1 tab (4 spaces)
-autocmd FileType * let b:tab_leader = "    "
-
-function! TabLine()
-    execute ':silent! s/^\([|\t]*\)\(.*\)/\1' . b:tab_leader . '\2/g'
+function! TabToNextIndentCol()
+    let sw = &shiftwidth
+    let line=getline('.')
+    let m = matchlist(line, '^\s*')
+    if m == []
+        return
+    endif
+    let lead = m[0]
+    let leadlen = strdisplaywidth(lead)
+    let next = ((leadlen / sw) + 1) * sw
+    " Replace leading whitespace
+    let newline = repeat(' ', next) . substitute(line, '^\s*', '', '')
+    call setline('.', newline)
 endfunction
 
-function! UntabLine()
-    execute ':silent! s/^\([\|\t]*\)' . b:tab_leader . '/\1/g'
-endfunction
-
-noremap ] :call TabLine()<CR>
-noremap [ :call UntabLine()<CR>
+" Tab mode: pad leading whitespace to next shiftwidth boundary (VS Code style)
+nnoremap <Tab> :call TabToNextIndentCol()<CR>
+inoremap <Tab> <Esc>:call TabToNextIndentCol()<CR>a
 
 " slider 
 set guioptions+=r
