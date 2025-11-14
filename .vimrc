@@ -114,10 +114,10 @@ set statusline+=%#LineNr#
 set statusline+=%=
 set statusline+=%#CursorColumn#
 set statusline+=%y                                                  " File type
-set statusline+=\[%l/%L\ lines]                                     " Current/Total lines
+set statusline+=\[%l/%L]                                            " Current/Total lines
 
 " Add tab size display on the right
-set statusline+=\[Tab:%{&shiftwidth}\ %{&expandtab?'spaces':'tabs'}]
+set statusline+=\[%{&shiftwidth}\%{&expandtab?'spaces':'tabs'}]
 
 " Highlighting
 highlight StatusLine ctermfg=51 guifg=#00ffff
