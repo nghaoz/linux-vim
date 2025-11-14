@@ -35,7 +35,7 @@
     colorscheme ghdark
 
 " Setting cursor
-    set cursorcolumn
+    " set cursorcolumn
     set cursorline
     let &t_SI = "\e[6 q"
     let &t_EI = "\e[2 q"
@@ -396,3 +396,8 @@
     " === Insert Mode ===
     inoremap <C-Right> <C-o>w
     inoremap <C-Left> <C-o>b
+
+" Setting cursor for gvim
+    if has('gui_running')
+        set guicursor+=i:ver25-blinkon500-blinkoff500
+    endif
