@@ -345,9 +345,6 @@
 " Paste clipboard content in normal mode at cursor position
     nnoremap <C-V> "+gP
 
-" Paste in insert mode at cursor position
-    inoremap <C-V> <C-R>+
-
 " Select all
     nnoremap <C-a> ggVG
 
