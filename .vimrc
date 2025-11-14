@@ -84,8 +84,6 @@ noremap <C-n> :tabnew<cr>
 noremap <C-w> :q<cr>
 noremap <C-\> :vs<cr><C-w>w
 noremap <C-o> :E<cr>
-noremap <C-RIGHT> :tabnext<cr>
-noremap <C-LEFT> :tabprevious<cr>
 
 " status line
 set laststatus=2
@@ -204,7 +202,7 @@ vnoremap <C-c> "+y
 nnoremap <S-Del> dd
 
 " auto insert/remove 1 tab (4 spaces)
-autocmd FileType * let b:tab_leader = "\t"
+autocmd FileType * let b:tab_leader = "    "
 
 function! TabLine()
     execute ':silent! s/^\([|\t]*\)\(.*\)/\1' . b:tab_leader . '\2/g'
@@ -280,3 +278,22 @@ highlight CursorLine ctermbg=236 guibg=#333333
 
 " find word highlight color
 highlight Search ctermfg=blue ctermbg=grey guifg=#0000ff guibg=#888888
+
+" === Normal Mode ===
+nnoremap <C-Right> w
+nnoremap <C-Left> b
+
+" Start visual mode and select a word forward/backward (Shift+Ctrl+Arrow)
+nnoremap <S-C-Right> vew
+nnoremap <S-C-Left> vb
+
+" === Visual Mode ===
+vnoremap <C-Right> e
+vnoremap <C-Left> b
+
+vnoremap <S-C-Right> e
+vnoremap <S-C-Left> b
+
+" === Insert Mode ===
+inoremap <C-Right> <C-o>w
+inoremap <C-Left> <C-o>b
