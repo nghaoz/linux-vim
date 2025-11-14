@@ -1,2 +1,2 @@
-nnoremap i a
+" nnoremap i a
 nnoremap a <Nop>
