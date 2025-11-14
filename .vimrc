@@ -237,46 +237,86 @@ vnoremap <C-c> "+y
 nnoremap <S-Del> dd
 
 " auto insert/remove 1 tab (4 spaces)
-function! TabToNextIndentCol()
-    let sw = &shiftwidth
-    let line=getline('.')
-    let m = matchlist(line, '^\s*')
-    if m == []
-        return
-    endif
-    let lead = m[0]
-    let leadlen = strdisplaywidth(lead)
-    let next = ((leadlen / sw) + 1) * sw
-    " Replace leading whitespace
-    let newline = repeat(' ', next) . substitute(line, '^\s*', '', '')
-    call setline('.', newline)
-endfunction
-
-" Tab mode: pad leading whitespace to next shiftwidth boundary (VS Code style)
-nnoremap <Tab> :call TabToNextIndentCol()<CR>
-inoremap <Tab> <Esc>:call TabToNextIndentCol()<CR>a
-
-" Untab
-function! TabToPrevIndentCol()
+function! TabToNextIndentColAtCursor()
     let sw = &shiftwidth
     let line = getline('.')
-    let m = matchlist(line, '^\s*')
-    if m == []
-        return
+    let col = col('.') - 1
+    " If cursor is in leading whitespace, treat as indentation
+    let lead = matchstr(line, '^\s*')
+    let leadlen = strlen(lead)
+    if col <= leadlen
+        " Indent the leading whitespace up to next shiftwidth
+        let next = ((leadlen / sw) + 1) * sw
+        let newline = repeat(' ', next) . substitute(line, '^\s*', '', '')
+        call setline('.', newline)
+        " Move cursor to the corresponding col
+        call cursor(line('.'), next + 1)
+    else
+        " Insert spaces at current cursor col for next indent boundary
+        let pad = sw - ((col - 1) % sw)
+        execute 'normal! i' . repeat(' ', pad)
     endif
-    let lead = m[0]
-    let leadlen = strdisplaywidth(lead)
-    let prev = ((leadlen - 1) / sw) * sw
-    if prev < 0
-        let prev = 0
-    endif
-    let newline = repeat(' ', prev) . substitute(line, '^\s*', '', '')
-    call setline('.', newline)
 endfunction
+function! TabToPrevIndentColAtCursor()
+    let sw = &shiftwidth
+    let line = getline('.')
+    let col = col('.') - 1
+    let lead = matchstr(line, '^\s*')
+    let leadlen = strlen(lead)
+    if col <= leadlen && leadlen > 0
+        " Unindent leading whitespace to the previous shiftwidth boundary
+        let last = ((leadlen - 1) / sw) * sw
+        if last < 0 | let last = 0 | endif
+        let newline = repeat(' ', last) . substitute(line, '^\s*', '', '')
+        call setline('.', newline)
+        call cursor(line('.'), last + 1)
+    else
+        " Remove spaces before cursor, up to one indent level
+        let before = matchstr(line[:col-1], '\s*$')
+        let n = min([sw, strlen(before)])
+        if n > 0
+            execute "normal! " . n . "dh"
+        endif
+    endif
+endfunction
+function! VisualTabToNextIndentCol()
+    let sw = &shiftwidth
+    let l1 = line("'<")
+    let l2 = line("'>")
+    for i in range(l1, l2)
+        let line = getline(i)
+        let lead = matchstr(line, '^\s*')
+        let leadlen = strlen(lead)
+        let next = ((leadlen / sw) + 1) * sw
+        let newline = repeat(' ', next) . substitute(line, '^\s*', '', '')
+        call setline(i, newline)
+    endfor
+endfunction
+function! VisualTabToPrevIndentCol()
+    let sw = &shiftwidth
+    let l1 = line("'<")
+    let l2 = line("'>")
+    for i in range(l1, l2)
+        let line = getline(i)
+        let lead = matchstr(line, '^\s*')
+        let leadlen = strlen(lead)
+        let last = ((leadlen - 1) / sw) * sw
+        if last < 0 | let last = 0 | endif
+        let newline = repeat(' ', last) . substitute(line, '^\s*', '', '')
+        call setline(i, newline)
+    endfor
+endfunction
+" Normal mode
+nnoremap <Tab> :call TabToNextIndentColAtCursor()<CR>
+nnoremap <S-Tab> :call TabToPrevIndentColAtCursor()<CR>
 
-" unindent (Shift+Tab)
-nnoremap <S-Tab> :call TabToPrevIndentCol()<CR>
-inoremap <S-Tab> <Esc>:call TabToPrevIndentCol()<CR>a
+" Insert mode
+inoremap <Tab> <Esc>:call TabToNextIndentColAtCursor()<CR>a
+inoremap <S-Tab> <Esc>:call TabToPrevIndentColAtCursor()<CR>a
+
+" Visual mode (indent/unindent selected lines)
+vnoremap <Tab> :<C-u>call VisualTabToNextIndentCol()<CR>gv
+vnoremap <S-Tab> :<C-u>call VisualTabToPrevIndentCol()<CR>gv
 
 " slider 
 set guioptions+=r
