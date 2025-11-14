@@ -19,9 +19,21 @@ set mouse=a
 set showtabline=2
 
 " tab
-set tabstop=4
-set shiftwidth=4
-set expandtab
+function! DetectTab()
+    " Prefer 4, then 3, then 2 spaces for shiftwidth/tabstop
+    if search('^\s\{4\}\S', 'nw')
+        setlocal shiftwidth=4 tabstop=4 expandtab
+    elseif search('^\s\{3\}\S', 'nw')
+        setlocal shiftwidth=3 tabstop=3 expandtab
+    elseif search('^\s\{2\}\S', 'nw')
+        setlocal shiftwidth=2 tabstop=2 expandtab
+    endif
+endfunction
+autocmd BufReadPost * call DetectTab()
+
+" set tabstop=4
+" set shiftwidth=4
+" set expandtab
 set autoindent
 
 " theme
@@ -241,6 +253,28 @@ endfunction
 " Tab mode: pad leading whitespace to next shiftwidth boundary (VS Code style)
 nnoremap <Tab> :call TabToNextIndentCol()<CR>
 inoremap <Tab> <Esc>:call TabToNextIndentCol()<CR>a
+
+" Untab
+function! TabToPrevIndentCol()
+    let sw = &shiftwidth
+    let line = getline('.')
+    let m = matchlist(line, '^\s*')
+    if m == []
+        return
+    endif
+    let lead = m[0]
+    let leadlen = strdisplaywidth(lead)
+    let prev = ((leadlen - 1) / sw) * sw
+    if prev < 0
+        let prev = 0
+    endif
+    let newline = repeat(' ', prev) . substitute(line, '^\s*', '', '')
+    call setline('.', newline)
+endfunction
+
+" unindent (Shift+Tab)
+nnoremap <S-Tab> :call TabToPrevIndentCol()<CR>
+inoremap <S-Tab> <Esc>:call TabToPrevIndentCol()<CR>a
 
 " slider 
 set guioptions+=r
