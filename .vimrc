@@ -326,7 +326,7 @@
     nnoremap <C-x> "+dd
 
 " Setting key-bind for Insert mode
-    nnoremap i a
+    " nnoremap i a
     nnoremap a <Nop>
 
 " Setting to paste in gvim command line
