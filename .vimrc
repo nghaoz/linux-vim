@@ -51,6 +51,7 @@ let &t_EI = "\e[2 q"
 set nowrap
 
 " quick comment
+" Filetype-specific comment leader
 autocmd FileType c,cpp,java,scala             let b:comment_leader = '\/\/'
 autocmd FileType sh,csh,ruby,python           let b:comment_leader = '#'
 autocmd FileType conf,fstab                   let b:comment_leader = '#'
@@ -70,7 +71,12 @@ function! CommentRange(start, end)
     endfor
 endfunction
 
-vnoremap cc :<C-u>call CommentRange(line("'<"), line("'>"))<CR>
+function! CommentLine()
+    let line = getline('.')
+    if line =~ '\S'
+        call setline('.', substitute(line, '^\(\s*\)\(.*\)', '\1' . b:comment_leader . ' \2', ''))
+    endif
+endfunction
 
 function! UncommentLine()
     if getline('.') =~? '^\s*' . b:comment_leader
@@ -87,8 +93,10 @@ function! UncommentRange(start, end)
     endfor
 endfunction
 
+" Visual mappings
+vnoremap cc :<C-u>call CommentRange(line("'<"), line("'>"))<CR>
 vnoremap bb :<C-u>call UncommentRange(line("'<"), line("'>"))<CR>
-
+" Normal mappings (single line)
 nnoremap cc :call CommentLine()<CR>
 nnoremap bb :call UncommentLine()<CR>
 
