@@ -129,8 +129,43 @@
     set statusline+=\[%{&shiftwidth}\%{&expandtab?'spaces':'tabs'}]
 
     " Highlighting
-    highlight StatusLine ctermfg=51 guifg=#00ffff
-    highlight StatusLineNC ctermfg=8 ctermbg=17 guifg=#888888 guibg=#001933
+    " highlight StatusLine ctermfg=51 guifg=#00ffff
+    " highlight StatusLineNC ctermfg=8 ctermbg=17 guifg=#888888 guibg=#001933
+
+    highlight StatusLine guifg=#00ffff guibg=#001933
+    highlight StatusLineNC guifg=#888888 guibg=#001933
+    
+    function! StatusLineColorMonitor()
+      let m = mode()
+      if m ==# 'i'
+        highlight StatusLine guifg=#00ffff guibg=#661900
+      elseif m ==# 'R'
+        highlight StatusLine guifg=#00ffff guibg=#006644
+      else
+        highlight StatusLine guifg=#00ffff guibg=#001933
+      endif
+    endfunction
+    
+    let g:statusline_timer = 0
+    
+    function! StatuslineStartTimer()
+      if g:statusline_timer == 0
+        let g:statusline_timer = timer_start(100, {-> StatusLineColorMonitor()}, {'repeat': -1})
+      endif
+    endfunction
+    
+    function! StatuslineStopTimer()
+      if g:statusline_timer != 0
+        call timer_stop(g:statusline_timer)
+        let g:statusline_timer = 0
+      endif
+    endfunction
+    
+    augroup DynamicStatusLine
+      autocmd!
+      autocmd VimEnter,FocusGained * call StatuslineStartTimer()
+      autocmd FocusLost,QuitPre * call StatuslineStopTimer()
+    augroup END
 
 " Setting NERDTree
     " show hidden files
