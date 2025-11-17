@@ -140,7 +140,7 @@
       if m ==# 'i'
         highlight StatusLine guifg=#00ffff guibg=#661900
       elseif m ==# 'R'
-        highlight StatusLine guifg=#00ffff guibg=#006644
+        highlight StatusLine guifg=#00ffff guibg=#006619
       else
         highlight StatusLine guifg=#00ffff guibg=#001933
       endif
