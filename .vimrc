@@ -464,3 +464,8 @@
     
     " Map Ctrl+Z to Undo in Visual mode
     vnoremap <C-z> u
+
+" Setting for NerdTree
+    " Always open files in new tab from NerdTree
+    autocmd FileType nerdtree nmap <buffer> <CR>       T
+    autocmd FileType nerdtree nmap <buffer> <2-LeftMouse> T
