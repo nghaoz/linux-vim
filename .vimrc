@@ -273,7 +273,11 @@
     nnoremap V <C-v>
 
 " Setting key-bind for copy using Ctrl c
+    " Copy selection to clipboard in visual mode
     vnoremap <C-c> "+y
+    
+    " Copy current line to clipboard in normal mode
+    nnoremap <C-c> "+yy
 
 " Map Shift+Delete to delete the current line in normal mode
     nnoremap <S-Del> dd
@@ -365,7 +369,11 @@
     set guioptions+=b
 
 " Map Ctrl+X in visual mode to cut to clipboard
+    " Cut selection to clipboard in visual mode
     vnoremap <C-x> "+d
+    
+    " Cut current line to clipboard in normal mode
+    nnoremap <C-x> "+dd
 
 " (Optional) Map Ctrl+X in normal mode to delete the current line and copy to clipboard
     nnoremap <C-x> "+dd
