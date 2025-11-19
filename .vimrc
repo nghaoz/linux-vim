@@ -468,3 +468,37 @@
     
     " Map Ctrl+Z to Undo in Visual mode
     vnoremap <C-z> u
+
+" Setting for NerdTree
+    " Setting open file in new tab, open in background
+    " --- Left mouse click on file ---
+    autocmd VimEnter * call NERDTreeAddKeyMap({
+                \ 'key': '<2-LeftMouse>',
+                \ 'scope': 'FileNode',
+                \ 'callback': 'OpenInBackgroundTab',
+                \ 'override': 1 })
+    
+    " --- Enter key on file ---
+    autocmd VimEnter * call NERDTreeAddKeyMap({
+                \ 'key': '<CR>',
+                \ 'scope': 'FileNode',
+                \ 'callback': 'OpenInBackgroundTab',
+                \ 'override': 1 })
+    
+    
+    function! OpenInBackgroundTab(node)
+        " Get file path (this is always a FILE because scope=FileNode)
+        let l:path = a:node.path.str()
+    
+        " Open file in background tab
+        execute 'silent tabedit ' . fnameescape(l:path)
+    
+        " Return to NERDTree tab
+        execute 'tabprevious'
+    endfunction
+
+    " Nerdtree open on right side
+    let g:NERDTreeWinPos = "right"
+
+    " window size
+    let g:NERDTreeWinSize = 72
