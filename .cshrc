@@ -14,6 +14,6 @@ cwdcmd
 
 alias gf "grep -rn"
 
-alias gvim 'gvim \!* & -geometry 1600x1000'
-alias g    'gvim \!* & -geometry 1600x1000'
+alias gvim 'gvim \!* &'
+alias g    'gvim \!* &'
 
