@@ -1,6 +1,10 @@
 " Setting gvim auto fullscreen when open
     if has('gui_running')
-        autocmd GUIEnter * call system("wmctrl -ir " . v:windowid . " -b add,maximized_vert,maximized_horz")
+        " Set GVim window to maximize
+        " autocmd GUIEnter * call system("wmctrl -ir " . v:windowid . " -b add,maximized_vert,maximized_horz")
+        
+        " Set GVim window to position (0,0), size 1600x1000 pixels
+        autocmd GUIEnter * call system("wmctrl -ir " . v:windowid . " -e 0,0,0,1600,1000")
     endif
 
 " Setting key-bind F11 to toggle fullscreen
