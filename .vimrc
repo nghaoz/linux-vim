@@ -446,3 +446,13 @@
     if has('gui_running')
         set guicursor=n-v-c:ver25-blinkon0,i:ver25-blinkon500-blinkoff500,r:hor20-blinkon500-blinkoff500
     endif
+
+" Setting for Ctrl z to undo in all mode
+    " Map Ctrl+Z to Undo in Normal mode
+    nnoremap <C-z> u
+    
+    " Map Ctrl+Z to Undo in Insert mode (returns to insert mode after undo)
+    inoremap <C-z> <C-o>u
+    
+    " Map Ctrl+Z to Undo in Visual mode
+    vnoremap <C-z> u
