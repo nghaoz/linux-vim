@@ -1,11 +1,11 @@
 " Setting gvim auto fullscreen when open
     if has('gui_running')
-        autocmd GUIEnter * call system("wmctrl -ir " . v:windowid . " -b toggle,fullscreen")
+        autocmd GUIEnter * call system("wmctrl -ir " . v:windowid . " -b add,maximized_vert,maximized_horz")
     endif
 
 " Setting key-bind F11 to toggle fullscreen
     if has('gui_running')
-        map <silent> <F11> :call system("wmctrl -ir " . v:windowid . " -b toggle,fullscreen")<CR>
+        map <silent> <F11> :call system("wmctrl -ir " . v:windowid . " -b toggle,maximized_vert,maximized_horz")<CR>
     endif
 
 " Setting search
