@@ -3,6 +3,11 @@
         autocmd GUIEnter * call system("wmctrl -ir " . v:windowid . " -b toggle,fullscreen")
     endif
 
+" Setting key-bind F11 to toggle fullscreen
+    if has('gui_running')
+        map <silent> <F11> :call system("wmctrl -ir " . v:windowid . " -b toggle,fullscreen")<CR>
+    endif
+
 " Setting search
     set hlsearch
 
