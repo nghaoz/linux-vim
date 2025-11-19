@@ -471,30 +471,42 @@
 
 " Setting for NerdTree
     " Setting open file in new tab, open in background
-    " --- Left mouse click on file ---
+    " Map click and Enter in NERDTree
     autocmd VimEnter * call NERDTreeAddKeyMap({
-                \ 'key': '<2-LeftMouse>',
-                \ 'scope': 'FileNode',
-                \ 'callback': 'OpenInBackgroundTab',
-                \ 'override': 1 })
-    
-    " --- Enter key on file ---
+          \ 'key': '<2-LeftMouse>',
+          \ 'scope': 'FileNode',
+          \ 'callback': 'OpenSmart',
+          \ 'override': 1 })
     autocmd VimEnter * call NERDTreeAddKeyMap({
-                \ 'key': '<CR>',
-                \ 'scope': 'FileNode',
-                \ 'callback': 'OpenInBackgroundTab',
-                \ 'override': 1 })
+          \ 'key': '<CR>',
+          \ 'scope': 'FileNode',
+          \ 'callback': 'OpenSmart',
+          \ 'override': 1 })
     
+    function! OpenSmart(node)
+      let l:path = a:node.path.str()
     
-    function! OpenInBackgroundTab(node)
-        " Get file path (this is always a FILE because scope=FileNode)
-        let l:path = a:node.path.str()
+      " Count buffers in the current tab that are *not* the NERDTree buffer
+      let l:bufs = tabpagebuflist()
+      let l:other = 0
+      for b in l:bufs
+        if buflisted(b)
+          " skip NERDTree buffer
+          if exists('t:NERDTreeBufName') && bufname(b) ==# t:NERDTreeBufName
+            continue
+          endif
+          let l:other += 1
+        endif
+      endfor
     
-        " Open file in background tab
+      if l:other == 0
+        " No other buffer → open in current tab
+        execute 'edit ' . fnameescape(l:path)
+      else
+        " Otherwise, open in background tab, then return
         execute 'silent tabedit ' . fnameescape(l:path)
-    
-        " Return to NERDTree tab
         execute 'tabprevious'
+      endif
     endfunction
 
     " Nerdtree open on right side
