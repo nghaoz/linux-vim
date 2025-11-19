@@ -54,7 +54,7 @@
 " Setting key-bind for comment line
     " Filetype-specific comment leader
     autocmd FileType c,cpp,java,scala             let b:comment_leader = '\/\/'
-    autocmd FileType sh,csh,ruby,python           let b:comment_leader = '#'
+    autocmd FileType sh,csh,ruby,python,tcsh      let b:comment_leader = '#'
     autocmd FileType conf,fstab                   let b:comment_leader = '#'
     autocmd FileType tex                          let b:comment_leader = '%'
     autocmd FileType mail                         let b:comment_leader = '>'
