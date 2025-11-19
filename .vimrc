@@ -1,3 +1,8 @@
+" Setting gvim auto fullscreen when open
+    if has('gui_running')
+        autocmd GUIEnter * call system("wmctrl -ir " . v:windowid . " -b toggle,fullscreen")
+    endif
+
 " Setting search
     set hlsearch
 
