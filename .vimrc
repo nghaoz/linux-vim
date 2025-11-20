@@ -514,3 +514,12 @@
 
     " window size
     let g:NERDTreeWinSize = 72
+
+" Setting wrap
+set linebreak       " wrap at word boundaries instead of characters
+set breakat=\ \		" what characters Vim can break on (default: space, tabs, etc.)
+set breakindent     " break new line with indent
+set fileencoding=utf-8
+set termencoding=utf-8
+set showbreak=↪ 
+highlight SpecialKey ctermbg=17 guibg=#001933 guifg=#00ffff
