@@ -517,7 +517,7 @@
 
 " Setting wrap
     set linebreak               " wrap at word boundaries instead of characters
-    set breakat=\ \		        " what characters Vim can break on (default: space, tabs, etc.)
+    set breakat=\ \             " what characters Vim can break on (default: space, tabs, etc.)
     set breakindent             " break new line with indent
     set fileencoding=utf-8
     set termencoding=utf-8
