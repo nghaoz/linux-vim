@@ -365,11 +365,11 @@
         let leadlen = strlen(lead)
     
         if col <= leadlen && leadlen > 0
-            " Cursor in leading whitespace → jump to previous multiple of shiftwidth
-            let last = (col / sw) * sw
-            let newline = repeat(' ', last) . substitute(line, '^\s*', '', '')
+            " Cursor in leading whitespace → remove up to shiftwidth spaces
+            let n = min([sw, leadlen])
+            let newline = repeat(' ', leadlen - n) . substitute(line, '^\s*', '', '')
             call setline('.', newline)
-            call cursor(line('.'), last + 1)
+            call cursor(line('.'), col - n + 1 > 0 ? col - n + 1 : 1)
         else
             " Not in leading whitespace → remove up to shiftwidth spaces before cursor
             let before = matchstr(line[:col-1], '\s*$')
