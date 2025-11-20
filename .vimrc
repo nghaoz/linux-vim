@@ -361,8 +361,43 @@
     nnoremap <S-Tab> :call TabToPrevIndentColAtCursor()<CR>
 
     " Insert mode
-    inoremap <Tab> <Esc>:call TabToNextIndentColAtCursor()<CR>a
-    inoremap <S-Tab> <Esc>:call TabToPrevIndentColAtCursor()<CR>a
+    " Insert mode: VSCode-style tab only at line start
+    inoremap <expr> <Tab> InsertModeTab()
+    inoremap <expr> <S-Tab> InsertModeShiftTab()
+    
+    function! InsertModeTab()
+        let sw = &shiftwidth
+        let line = getline('.')
+        let col = col('.') - 1
+        let lead = matchstr(line, '^\s*')
+        let leadlen = strlen(lead)
+    
+        if col <= leadlen
+            " Cursor in leading whitespace → jump to next indent
+            let next = ((leadlen / sw) + 1) * sw
+            " Move to start of line, then insert spaces to reach 'next'
+            return "\<C-o>0" . repeat(" ", next - leadlen)
+        else
+            return "\<Tab>"
+        endif
+    endfunction
+    
+    function! InsertModeShiftTab()
+        let sw = &shiftwidth
+        let line = getline('.')
+        let col = col('.') - 1
+        let lead = matchstr(line, '^\s*')
+        let leadlen = strlen(lead)
+    
+        if col <= leadlen && leadlen > 0
+            " Cursor in leading whitespace → jump to previous indent
+            let last = ((leadlen - 1) / sw) * sw
+            if last < 0 | let last = 0 | endif
+            return "\<C-o>0" . repeat(" ", leadlen - last)
+        else
+            return "\<C-d>"
+        endif
+    endfunction
 
     " Visual mode (indent/unindent selected lines)
     vnoremap <Tab> :<C-u>call VisualTabToNextIndentCol()<CR>gv
