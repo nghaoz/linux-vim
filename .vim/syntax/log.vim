@@ -97,7 +97,7 @@ syn keyword logLevelCritical CRITICAL CRIT FATAL
 syn keyword logLevelError ERROR ERR FAILURE SEVERE
 syn keyword logLevelWarning WARNING WARN
 syn keyword logLevelNotice NOTICE
-syn keyword logLevelInfo INFO
+syn keyword logLevelInfo INFO HAOZ haoz Haoz
 syn keyword logLevelDebug DEBUG FINE
 syn keyword logLevelTrace TRACE FINER FINEST
 
