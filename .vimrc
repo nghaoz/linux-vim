@@ -287,7 +287,7 @@
     nnoremap <S-Del> dd
 
 " Setting insert/remove 1 tab (4 spaces)
-    " Insert mode: VSCode-style tab only at line start
+    " Insert mode: VSCode-style Tab only at line start
     inoremap <expr> <Tab> InsertModeTab()
     inoremap <expr> <S-Tab> InsertModeShiftTab()
     
@@ -299,11 +299,17 @@
         let leadlen = strlen(lead)
     
         if col <= leadlen
-            " Cursor in leading whitespace → jump to next indent
+            " Cursor in leading whitespace or empty line → jump to next indent
             let next = ((leadlen / sw) + 1) * sw
-            " Move to start of line, then insert spaces to reach 'next'
-            return "\<C-o>0" . repeat(" ", next - leadlen)
+            let to_insert = next - leadlen
+            " If empty line, insert shiftwidth spaces
+            if line == ''
+                let to_insert = sw
+            endif
+            " Insert spaces and move cursor to end of inserted indent
+            return repeat(' ', to_insert)
         else
+            " Cursor after leading whitespace → normal tab
             return "\<Tab>"
         endif
     endfunction
@@ -319,8 +325,11 @@
             " Cursor in leading whitespace → jump to previous indent
             let last = ((leadlen - 1) / sw) * sw
             if last < 0 | let last = 0 | endif
-            return "\<C-o>0" . repeat(" ", leadlen - last)
+            " Remove spaces to previous indent
+            let remove = leadlen - last
+            return "\<C-o>0" . repeat("\<Del>", remove)
         else
+            " Cursor after leading whitespace → normal shift-tab
             return "\<C-d>"
         endif
     endfunction
