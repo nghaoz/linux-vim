@@ -287,80 +287,6 @@
     nnoremap <S-Del> dd
 
 " Setting insert/remove 1 tab (4 spaces)
-    function! TabToNextIndentColAtCursor()
-        let sw = &shiftwidth
-        let line = getline('.')
-        let col = col('.') - 1
-        " If cursor is in leading whitespace, treat as indentation
-        let lead = matchstr(line, '^\s*')
-        let leadlen = strlen(lead)
-        if col <= leadlen
-            " Indent the leading whitespace up to next shiftwidth
-            let next = ((leadlen / sw) + 1) * sw
-            let newline = repeat(' ', next) . substitute(line, '^\s*', '', '')
-            call setline('.', newline)
-            " Move cursor to the corresponding col
-            call cursor(line('.'), next + 1)
-        else
-            " Insert spaces at current cursor col for next indent boundary
-            let pad = sw - ((col - 1) % sw)
-            execute 'normal! i' . repeat(' ', pad)
-        endif
-    endfunction
-    function! TabToPrevIndentColAtCursor()
-        let sw = &shiftwidth
-        let line = getline('.')
-        let col = col('.') - 1
-        let lead = matchstr(line, '^\s*')
-        let leadlen = strlen(lead)
-        if col <= leadlen && leadlen > 0
-            " Unindent leading whitespace to the previous shiftwidth boundary
-            let last = ((leadlen - 1) / sw) * sw
-            if last < 0 | let last = 0 | endif
-            let newline = repeat(' ', last) . substitute(line, '^\s*', '', '')
-            call setline('.', newline)
-            call cursor(line('.'), last + 1)
-        else
-            " Remove spaces before cursor, up to one indent level
-            let before = matchstr(line[:col-1], '\s*$')
-            let n = min([sw, strlen(before)])
-            if n > 0
-                execute "normal! " . n . "dh"
-            endif
-        endif
-    endfunction
-    function! VisualTabToNextIndentCol()
-        let sw = &shiftwidth
-        let l1 = line("'<")
-        let l2 = line("'>")
-        for i in range(l1, l2)
-            let line = getline(i)
-            let lead = matchstr(line, '^\s*')
-            let leadlen = strlen(lead)
-            let next = ((leadlen / sw) + 1) * sw
-            let newline = repeat(' ', next) . substitute(line, '^\s*', '', '')
-            call setline(i, newline)
-        endfor
-    endfunction
-    function! VisualTabToPrevIndentCol()
-        let sw = &shiftwidth
-        let l1 = line("'<")
-        let l2 = line("'>")
-        for i in range(l1, l2)
-            let line = getline(i)
-            let lead = matchstr(line, '^\s*')
-            let leadlen = strlen(lead)
-            let last = ((leadlen - 1) / sw) * sw
-            if last < 0 | let last = 0 | endif
-            let newline = repeat(' ', last) . substitute(line, '^\s*', '', '')
-            call setline(i, newline)
-        endfor
-    endfunction
-    " Normal mode
-    nnoremap <Tab> :call TabToNextIndentColAtCursor()<CR>
-    nnoremap <S-Tab> :call TabToPrevIndentColAtCursor()<CR>
-
-    " Insert mode
     " Insert mode: VSCode-style tab only at line start
     inoremap <expr> <Tab> InsertModeTab()
     inoremap <expr> <S-Tab> InsertModeShiftTab()
@@ -399,9 +325,84 @@
         endif
     endfunction
 
-    " Visual mode (indent/unindent selected lines)
-    vnoremap <Tab> :<C-u>call VisualTabToNextIndentCol()<CR>gv
-    vnoremap <S-Tab> :<C-u>call VisualTabToPrevIndentCol()<CR>gv
+    " Normal mode tab (VSCode-style)
+    nnoremap <Tab> :call NormalModeTab()<CR>
+    nnoremap <S-Tab> :call NormalModeShiftTab()<CR>
+    
+    function! NormalModeTab()
+        let sw = &shiftwidth
+        let line = getline('.')
+        let col = col('.') - 1
+        let lead = matchstr(line, '^\s*')
+        let leadlen = strlen(lead)
+    
+        if col <= leadlen
+            " Cursor in leading whitespace → jump to next multiple of shiftwidth
+            let next = ((col / sw) + 1) * sw
+            let newline = repeat(' ', next) . substitute(line, '^\s*', '', '')
+            call setline('.', newline)
+            call cursor(line('.'), next + 1)
+        else
+            " Not in leading whitespace → insert shiftwidth spaces
+            execute "normal! i" . repeat(" ", sw) . "\<Esc>"
+        endif
+    endfunction
+    
+    function! NormalModeShiftTab()
+        let sw = &shiftwidth
+        let line = getline('.')
+        let col = col('.') - 1
+        let lead = matchstr(line, '^\s*')
+        let leadlen = strlen(lead)
+    
+        if col <= leadlen && leadlen > 0
+            " Cursor in leading whitespace → jump to previous multiple of shiftwidth
+            let last = (col / sw) * sw
+            let newline = repeat(' ', last) . substitute(line, '^\s*', '', '')
+            call setline('.', newline)
+            call cursor(line('.'), last + 1)
+        else
+            " Not in leading whitespace → remove up to shiftwidth spaces before cursor
+            let before = matchstr(line[:col-1], '\s*$')
+            let n = min([sw, strlen(before)])
+            if n > 0
+                execute "normal! " . n . "dh"
+            endif
+        endif
+    endfunction
+    
+    " Visual mode tab (VSCode-style)
+    vnoremap <Tab> :<C-u>call VisualModeTab()<CR>gv
+    vnoremap <S-Tab> :<C-u>call VisualModeShiftTab()<CR>gv
+    
+    function! VisualModeTab()
+        let sw = &shiftwidth
+        let l1 = line("'<")
+        let l2 = line("'>")
+        for i in range(l1, l2)
+            let line = getline(i)
+            let lead = matchstr(line, '^\s*')
+            let leadlen = strlen(lead)
+            let next = ((leadlen / sw) + 1) * sw
+            let newline = repeat(' ', next) . substitute(line, '^\s*', '', '')
+            call setline(i, newline)
+        endfor
+    endfunction
+    
+    function! VisualModeShiftTab()
+        let sw = &shiftwidth
+        let l1 = line("'<")
+        let l2 = line("'>")
+        for i in range(l1, l2)
+            let line = getline(i)
+            let lead = matchstr(line, '^\s*')
+            let leadlen = strlen(lead)
+            let last = ((leadlen - 1) / sw) * sw
+            if last < 0 | let last = 0 | endif
+            let newline = repeat(' ', last) . substitute(line, '^\s*', '', '')
+            call setline(i, newline)
+        endfor
+    endfunction
 
 " Setting slider 
     set guioptions+=r
