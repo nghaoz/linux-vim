@@ -49,7 +49,7 @@
     colorscheme ghdark
 
 " Setting cursor
-    " set cursorcolumn
+    set cursorcolumn
     set cursorline
     let &t_SI = "\e[6 q"
     let &t_EI = "\e[2 q"
@@ -456,6 +456,7 @@
     if has('gui_running')
         set guicursor=n-v-c:ver25-blinkon0,i:ver25-blinkon500-blinkoff500,r:hor20-blinkon500-blinkoff500
     endif
+    highlight Cursor guifg=blue
 
 " Setting for Ctrl z to undo in all mode
     " Map Ctrl+Z to Undo in Normal mode
