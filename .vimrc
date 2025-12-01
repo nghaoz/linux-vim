@@ -522,3 +522,6 @@
     set termencoding=utf-8
     set showbreak=↪ 
     highlight SpecialKey ctermbg=17 guibg=#001933 guifg=#00ffff
+
+" Setting indentLine color
+    let g:indentLine_color_gui = '#00ffff'
