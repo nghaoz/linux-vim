@@ -524,6 +524,6 @@
     highlight SpecialKey ctermbg=17 guibg=#001933 guifg=#00ffff
 
 " Setting indentLine
-    let g:indentLine_color_gui = '#0019aa'
+    let g:indentLine_color_gui = '#0055aa'
     let g:indentLine_char = '|'
     " let g:indentLine_char_list = ['|', '¦', '┆', '┊']
